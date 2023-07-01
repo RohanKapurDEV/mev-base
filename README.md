@@ -13,4 +13,4 @@ git submodule update --init --recursive
 cargo build
 ```
 
-At thsi point, you should be good to use the searcher and geyser protobufs and client impls in your bot. You can add your bot to the codebase by running `cargo new --lib <BOT_NAME>`, and adding the bot name to the Cargo workspace file (root level `Cargo.toml`).
+At thsi point, you should be good to use the searcher and geyser protobufs and client impls in your bot. You can add your bot to the codebase by running `cargo new --bin <BOT_NAME>`, and adding the bot name to the Cargo workspace file (root level `Cargo.toml`).
