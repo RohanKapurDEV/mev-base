@@ -1,0 +1,3 @@
+[submodule "lib/searcher-protos/mev-protos"]
+	path = lib/searcher-protos/mev-protos
+	url = git@github.com:jito-labs/mev-protos.git
