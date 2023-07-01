@@ -1,0 +1,27 @@
+[package]
+name = "jito-geyser-client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait = "0.1"
+crossbeam = "0.8.2"
+jito-geyser-protos = { path = "../geyser-protos" }
+jito-solana-sdk = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito", package = "solana-sdk" }
+log = "0.4"
+lru = "0.8.1"
+prost = "0.11.6"
+prost-types = "0.11.6"
+rand = "0.7"
+serde = "1.0.130"
+serde_derive = "1.0.130"
+serde_json = "1.0.68"
+
+thiserror = "1.0.37"
+tokio = { version = "1", features = ["full"] }
+tonic = { version = "0.8.3", features = ["tls"] }
+
+[build-dependencies]
+tonic-build = "0.8.4"

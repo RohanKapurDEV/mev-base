@@ -1,0 +1,22 @@
+[package]
+name = "jito-searcher-client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bincode = "1.3.3"
+bytes = "1.4"
+futures = "0.3"
+futures-util = "0.3"
+jito-searcher-protos = { path = "../searcher-protos" }
+log = "0.4.17"
+prost-types = "0.11.8"
+solana-client = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito" }
+solana-metrics = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito" }
+solana-perf = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito" }
+solana-sdk = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito" }
+thiserror = "1.0.39"
+tokio = { version = "1.14.1", features = ["full"] }
+tonic = { version = "0.8.3", features = ["tls"] }
