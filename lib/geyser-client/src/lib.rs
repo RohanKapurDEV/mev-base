@@ -7,8 +7,10 @@ use std::{
     sync::{atomic::AtomicBool, Arc},
 };
 
+use pkg_utils::solana_sdk;
+
 use jito_geyser_protos::solana::geyser::geyser_client::GeyserClient;
-use jito_solana_sdk::{clock::Slot, pubkey::Pubkey};
+use solana_sdk::{clock::Slot, pubkey::Pubkey};
 use tonic::transport::{ClientTlsConfig, Endpoint};
 
 use crate::{geyser_consumer::GeyserConsumer, interceptor::GrpcInterceptor};

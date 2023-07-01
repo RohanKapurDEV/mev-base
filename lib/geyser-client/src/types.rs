@@ -1,8 +1,10 @@
 //! Contains application specific representations of proto definitions.
 #![allow(deprecated)]
 
+use pkg_utils::solana_sdk;
+
 use jito_geyser_protos::solana::geyser;
-use jito_solana_sdk::{pubkey::Pubkey, slot_hashes::Slot};
+use solana_sdk::{pubkey::Pubkey, slot_hashes::Slot};
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SlotStatus {

@@ -1,8 +1,5 @@
 [workspace]
 
 members = [
-    "geyser-client",
-    "geyser-protos",
-    "searcher-client",
-    "searcher-protos",
+    "lib/*",
 ]

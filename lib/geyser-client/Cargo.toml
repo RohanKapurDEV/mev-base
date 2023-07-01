@@ -9,7 +9,7 @@ edition = "2021"
 async-trait = "0.1"
 crossbeam = "0.8.2"
 jito-geyser-protos = { path = "../geyser-protos" }
-jito-solana-sdk = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.18-jito", package = "solana-sdk" }
+pkg-utils = { path = "../pkg-utils" }
 log = "0.4"
 lru = "0.8.1"
 prost = "0.11.6"

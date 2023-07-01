@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package searcher;
+
+import "bundle.proto";
+import "packet.proto";
+
+import "google/protobuf/timestamp.proto";
+
+message SlotList {
+  repeated uint64 slots = 1;
+}
+
+message SendBundleRequest {
+  bundle.Bundle bundle = 1;
+}
+
+message SendBundleResponse {
+  // server uuid for the bundle
+  string uuid = 1;
+}
+
+message ProgramSubscriptionV0 {
+  repeated string programs = 1;
+}
+
+message WriteLockedAccountSubscriptionV0 {
+  repeated string accounts = 1;
+}
+
+message MempoolSubscription {
+  oneof msg {
+    ProgramSubscriptionV0 program_v0_sub = 1;
+    WriteLockedAccountSubscriptionV0 wla_v0_sub = 2;
+  }
+  // NOTE: do not add any fields after this
+}
+
+message PendingTxSubscriptionRequest {
+  // list of accounts to subscribe to
+  // NOTE: the block-engine will only forward transactions that write lock the provided accounts here.
+  repeated string accounts = 1;
+}
+
+message PendingTxNotification {
+  // server-side timestamp the transactions were generated at (for debugging/profiling purposes)
+  google.protobuf.Timestamp server_side_ts = 1;
+  // expiration time of the packet
+  google.protobuf.Timestamp expiration_time = 2;
+  // list of pending transactions
+  repeated packet.Packet transactions = 3;
+}
+
+message NextScheduledLeaderRequest {}
+
+message NextScheduledLeaderResponse {
+  // the current slot the backend is on
+  uint64 current_slot = 1;
+
+  // the slot and identity of the next leader
+  uint64 next_leader_slot = 2;
+  string next_leader_identity = 3;
+}
+
+message ConnectedLeadersRequest {}
+
+message ConnectedLeadersResponse {
+  map<string, SlotList> connected_validators = 1;
+}
+
+message GetTipAccountsRequest {}
+
+message GetTipAccountsResponse {
+  repeated string accounts = 1;
+}
+
+message SubscribeBundleResultsRequest {}
+
+service SearcherService {
+  // Searchers can invoke this endpoint to subscribe to their respective bundle results.
+  // A success result would indicate the bundle won its state auction and was submitted to the validator.
+  rpc SubscribeBundleResults (SubscribeBundleResultsRequest) returns (stream bundle.BundleResult) {}
+
+  // RPC endpoint to subscribe to pending transactions. Clients can provide a list of base58 encoded accounts.
+  // Any transactions that write-lock the provided accounts will be streamed to the searcher.
+  // NOTE: DEPRECATED SOON!!!
+  rpc SubscribePendingTransactions (PendingTxSubscriptionRequest) returns (stream PendingTxNotification) {}
+
+  // RPC endpoint to subscribe to mempool based on a few filters
+  rpc SubscribeMempool (MempoolSubscription) returns (stream PendingTxNotification) {}
+
+  rpc SendBundle (SendBundleRequest) returns (SendBundleResponse) {}
+
+  // Returns the next scheduled leader connected to the block engine.
+  rpc GetNextScheduledLeader (NextScheduledLeaderRequest) returns (NextScheduledLeaderResponse) {}
+
+  // Returns information on connected leader slots
+  rpc GetConnectedLeaders (ConnectedLeadersRequest) returns (ConnectedLeadersResponse) {}
+
+  // Returns the tip accounts searchers shall transfer funds to for the leader to claim.
+  rpc GetTipAccounts (GetTipAccountsRequest) returns (GetTipAccountsResponse) {}
+}

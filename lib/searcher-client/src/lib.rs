@@ -1,10 +1,14 @@
 pub mod client_interceptor;
+pub mod cluster_data_impl;
 pub mod convert;
 
 use std::sync::{
     atomic::{AtomicBool, Ordering},
     Arc,
 };
+
+use pkg_utils::solana_client;
+use pkg_utils::solana_sdk;
 
 use bincode::serialize;
 use bytes::Bytes;
@@ -266,7 +270,7 @@ pub async fn grpc_connect(url: &str) -> SearcherClientResult<Channel> {
 }
 
 pub mod utils {
-    use solana_sdk::pubkey::Pubkey;
+    use pkg_utils::solana_sdk::pubkey::Pubkey;
 
     pub fn derive_tip_accounts(tip_program_pubkey: &Pubkey) -> Vec<Pubkey> {
         let tip_pda_0 = Pubkey::find_program_address(&[b"TIP_ACCOUNT_0"], tip_program_pubkey).0;

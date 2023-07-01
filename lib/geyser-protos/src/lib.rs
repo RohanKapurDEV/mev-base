@@ -1,15 +1,15 @@
 use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 
-use jito_solana_account_decoder::{
+use pkg_utils::jito_solana_account_decoder::{
     parse_token::{real_number_string_trimmed, UiTokenAmount},
     StringAmount,
 };
-use jito_solana_sdk::{
+use pkg_utils::jito_solana_sdk::{
     deserialize_utils::default_on_eof, message::v0::LoadedAddresses, transaction::Result,
     transaction_context::TransactionReturnData,
 };
-use jito_solana_transaction_status::{
+use pkg_utils::jito_solana_transaction_status::{
     InnerInstructions, Reward, RewardType, TransactionStatusMeta, TransactionTokenBalance,
 };
 

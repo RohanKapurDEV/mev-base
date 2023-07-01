@@ -1,0 +1,18 @@
+[package]
+name = "pkg-utils"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+jito-solana-client = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-client" }
+jito-solana-metrics = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-metrics" }
+jito-solana-perf = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-perf" }
+jito-solana-sdk = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-sdk"  }
+jito-solana-transaction-status = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-transaction-status" }
+jito-solana-account-decoder = { git = "https://github.com/jito-foundation/jito-solana.git", tag = "v1.14.13-jito", package = "solana-account-decoder" }
+solana-client = { version = "=1.14.13" }
+solana-metrics = { version = "=1.14.13" }
+solana-perf = { version = "=1.14.13" }
+solana-sdk = { version = "=1.14.13" }
+solana-transaction-status = { version = "=1.14.13" }
+solana-account-decoder = { version = "=1.14.13" }
